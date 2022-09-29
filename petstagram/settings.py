@@ -21,12 +21,19 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Default  Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # My applications' apps
+    'petstagram.accounts',
+    'petstagram.common',
+    'petstagram.pets',
+    'petstagram.photos',
 ]
 
 MIDDLEWARE = [
