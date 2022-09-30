@@ -21,7 +21,7 @@
                 <div class="top">
                     <div class="userDetails">
                         <!-- Link to User Profile Page -->
-                        <a href="#">
+                        <a href="{% url 'details user' pk=1 %}">
                             <div class="profilepic">
                                 <div class="profile_img">
                                     <div class="image">
@@ -32,7 +32,7 @@
                         </a>
                         <h3>
                             <!-- Link to User Profile Page -->
-                            <a href="#">
+                            <a href="{% url 'details user' pk=1 %}">
                                 <!-- if user has first name and last name -->
                                 Diyan Kalaydzhiev
                                 <!-- else -->
@@ -127,7 +127,7 @@
 
                     <!-- Start Tagged Pets -->
                     <!-- Link to First Tagged Pet Details Page-->
-                    <a href="#">
+                    <a href="{% url 'details pet' username='corewin' pet_name='nero' %}">
                         <p class="message">
                             <b>Sasho</b>
                         </p>
@@ -142,7 +142,7 @@
                     <!-- End Tagged Pets -->
 
                     <!-- Link to Photo Details Page -->
-                    <a href="#">
+                    <a href="{% url 'details pet' username='corewin' pet_name='nero' %}">
                         <h4 class="details">See details</h4>
                     </a>
 
@@ -177,7 +177,7 @@
                 <div class="top">
                     <!-- User Details and image location -->
                     <div class="userDetails">
-                        <a href="profile details">
+                        <a href="{% url 'details user' pk=1 %}>
                             <div class="profilepic">
                                 <div class="profile_img">
                                     <div class="image">
@@ -187,7 +187,7 @@
                             </div>
                         </a>
                         <h3>
-                            <a href="profile details">
+                            <a href="{% url 'details user' pk=1 %}">
                                 <!-- if user has first name and last name -->
                                 Antonia Hristova
                                 <!-- else -->
@@ -275,7 +275,7 @@
                     </a>
 
                     <!-- tagged pets -->
-                    <a href="pet profile">
+                    <a href="{% url 'details pet' username='corewin' pet_name='nero' %}">
                         <p class="message">
                             <b>Bucky</b>
                         </p>
@@ -312,7 +312,7 @@
                 <div class="top">
                     <!-- User Details and image location -->
                     <div class="userDetails">
-                        <a href="profile details">
+                        <a href="{% url 'details user' pk=2 %}">
                             <div class="profilepic">
                                 <div class="profile_img">
                                     <div class="image">
@@ -322,7 +322,7 @@
                             </div>
                         </a>
                         <h3>
-                            <a href="profile details">
+                            <a href="{% url 'details user' pk=2 %}">
                                 <!-- if user has first name and last name -->
                                 Steven Ivanov
                                 <!-- else -->
@@ -410,7 +410,7 @@
                     </a>
 
                     <!-- tagged pets -->
-                    <a href="pet profile">
+                    <a href="{% url 'details pet' username='corewin' pet_name='nero' %}">
                         <p class="message">
                             <b>Donny</b>
                         </p>
