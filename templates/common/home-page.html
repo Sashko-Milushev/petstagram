@@ -60,7 +60,7 @@
                             <div class="left">
                                 <!-- Start Like Button -->
                                 <span class="heart">
-									<a href="#">
+									<a href="{% url 'like photo' photo_id=photo.pk %}">
 										<!-- if user has liked the photo -->
                                         {% if photo.is_liked_by_user %}
                                             <svg style="color: red"
@@ -103,7 +103,7 @@
                                         </path>
                                     </svg>
                                         {% endif %}
-								</a>
+								    </a>
 								</span>
                                 <!-- End Like Button -->
 
