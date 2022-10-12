@@ -2,11 +2,13 @@
 from django.core.validators import MinLengthValidator
 from django.db import models
 
+from petstagram.core.model_mixins import StrFromFieldMixin
 from petstagram.pets.models import Pet
 from petstagram.photos.validators import validate_image
 
 
-class Photo(models.Model):
+class Photo(StrFromFieldMixin, models.Model):
+    str_fields = ('photo', 'location')
     MIN_DESCRIPTION_LENGTH = 10
     MAX_DESCRIPTION_LENGTH = 300
 
