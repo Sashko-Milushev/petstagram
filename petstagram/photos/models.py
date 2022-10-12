@@ -24,7 +24,9 @@ class Photo(StrFromFieldMixin, models.Model):
         max_length=MAX_DESCRIPTION_LENGTH,
         validators=(
             MinLengthValidator(MIN_DESCRIPTION_LENGTH),
-        )
+        ),
+        null=True,
+        blank=True,
     )
 
     location = models.CharField(
