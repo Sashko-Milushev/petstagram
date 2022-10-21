@@ -1,11 +1,24 @@
-from django.shortcuts import render
+import form as form
+from django.shortcuts import render, redirect
 
 from petstagram.core.photo_utils import apply_likes_count, apply_user_liked_photo
+from petstagram.pets.forms import PetCreateForm
 from petstagram.pets.utils import get_pet_by_name_and_username
 
 
 def add_pet(request):
-    return render(request, 'pets/pet-add-page.html')
+    if request.method == "GET":
+        form = PetCreateForm()
+    else:
+        form = PetCreateForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # TODO: fix when have auth
+            return redirect('details user', pk=1)
+    context = {
+        'form': PetCreateForm(),
+    }
+    return render(request, 'pets/pet-add-page.html', context)
 
 
 def details_pet(request, username, pet_slug):
