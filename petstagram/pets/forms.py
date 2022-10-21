@@ -3,7 +3,7 @@ from django import forms
 from petstagram.pets.models import Pet
 
 
-class PetCreateForm(forms.ModelForm):
+class PetBaseForm(forms.Models):
     class Meta:
         model = Pet
         fields = ('name', 'date_of_birth', 'personal_photo')
@@ -14,27 +14,31 @@ class PetCreateForm(forms.ModelForm):
         }
         widgets = {
             'name': forms.TextInput(
-                attrs= {
+                attrs={
                     'placeholder': 'Pet name'
                 }
             ),
             'date_of_birth': forms.TextInput(
-                attrs= {
+                attrs={
                     'type': 'date',
                     'placeholder': 'mm/dd/yyyy'
                 }
             ),
             'personal_photo': forms.TextInput(
-                attrs= {
+                attrs={
                     'placeholder': 'Link to image'
                 }
             ),
         }
 
 
-class PetEditForm:
+class PetCreateForm(PetBaseForm):
     pass
 
 
-class PetDeleteForm:
+class PetEditForm(PetBaseForm):
+    pass
+
+
+class PetDeleteForm(PetBaseForm):
     pass
