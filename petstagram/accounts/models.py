@@ -4,6 +4,8 @@ from django.contrib.auth import models as auth_models
 from django.core import validators
 from django.db import models
 
+from petstagram.core.validators import validate_only_letters
+
 
 class ChoicesEnumMixin:
     @classmethod
@@ -32,6 +34,7 @@ class AppUser(auth_models.AbstractUser):
         max_length=MAX_LENGTH_FIRST_NAME,
         validators=(
             validators.MinLengthValidator(MIN_LENGTH_FIRST_NAME),
+            validate_only_letters,
         ),
     )
 
@@ -39,6 +42,7 @@ class AppUser(auth_models.AbstractUser):
         max_length=MAX_LENGTH_LAST_NAME,
         validators=(
             validators.MinLengthValidator(MAX_LENGTH_LAST_NAME),
+            validate_only_letters,
         ),
     )
 
