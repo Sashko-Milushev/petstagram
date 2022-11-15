@@ -1,9 +1,12 @@
 from django.shortcuts import render
+from django.contrib.auth import views as auth_views
 
 
-def login_user(request):
-    return render(request, 'accounts/login-page.html')
+# def login_user(request):
+#     return render(request, 'accounts/login-page.html')
 
+class SignInView(auth_views.LoginView):
+    template_name = 'accounts/login-page.html'
 
 def register_user(request):
     return render(request, 'accounts/register-page.html')
