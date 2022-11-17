@@ -12,11 +12,13 @@ def add_pet(request):
     else:
         form = PetCreateForm(request.POST)
         if form.is_valid():
+            pet = form.save(commit=False)
+            pet.user = request.user
             form.save()
-            # TODO: fix when have auth
-            return redirect('details user', pk=1)
+
+            return redirect('details user', pk=request.user.pk)
     context = {
-        'form': PetCreateForm(),
+        'form': form,
     }
     return render(request, 'pets/pet-add-page.html', context)
 
@@ -30,6 +32,7 @@ def details_pet(request, username, pet_slug):
         'pet': pet,
         'photos_count': pet.photo_set.count(),
         'pet_photos': photos,
+        'is_owner': pet.user == request.user,
     }
     return render(
         request,
@@ -39,11 +42,11 @@ def details_pet(request, username, pet_slug):
 
 
 def edit_pet(request, username, pet_slug):
-    # TODO: use 'username' when auth
-    pet = Pet.objects.filter(slug=pet_slug).get()
+
+    pet = get_pet_by_name_and_username(pet_slug, username)
 
     if request.method == "GET":
-        form = PetEditForm
+        form = PetEditForm(instance=pet)
     else:
         form = PetEditForm(request.POST, instance=pet)
         if form.is_valid():
@@ -59,14 +62,11 @@ def edit_pet(request, username, pet_slug):
 
 
 def delete_pet(request, username, pet_slug):
-    # TODO: use 'username' when auth
 
-    pet = Pet.objects\
-        .filter(slug=pet_slug)\
-        .get()
+    pet = get_pet_by_name_and_username(pet_slug, username)
 
     if request.method == "GET":
-        form = PetDeleteForm
+        form = PetDeleteForm(instance=pet)
     else:
         form = PetDeleteForm(request.POST, instance=pet)
         if form.is_valid():

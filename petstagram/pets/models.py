@@ -1,7 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.template.defaultfilters import slugify
 
 from petstagram.core.model_mixins import StrFromFieldMixin
+
+UserModel = get_user_model()
 
 
 class Pet(StrFromFieldMixin, models.Model):
@@ -23,6 +26,11 @@ class Pet(StrFromFieldMixin, models.Model):
         blank=True,
     )
 
+    user = models.ForeignKey(
+        UserModel,
+        on_delete=models.RESTRICT,
+    )
+
     slug = models.SlugField(
         unique=True,
         null=False,
@@ -36,4 +44,3 @@ class Pet(StrFromFieldMixin, models.Model):
             self.slug = slugify(f'{self.id}-{self.name}')
 
         return super().save(*args, **kwargs)
-

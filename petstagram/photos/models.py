@@ -1,10 +1,12 @@
-
+from django.contrib.auth import get_user_model
 from django.core.validators import MinLengthValidator
 from django.db import models
 
 from petstagram.core.model_mixins import StrFromFieldMixin
 from petstagram.pets.models import Pet
 from petstagram.photos.validators import validate_image
+
+UserModel = get_user_model()
 
 
 class Photo(StrFromFieldMixin, models.Model):
@@ -15,7 +17,7 @@ class Photo(StrFromFieldMixin, models.Model):
     MAX_LOCATION_LENGTH = 30
 
     photo = models.ImageField(
-        upload_to='mediafiles/pet_photos/',
+        upload_to='pet_photos/',
         null=False,
         blank=True,
         validators=(validate_image,),
@@ -45,4 +47,9 @@ class Photo(StrFromFieldMixin, models.Model):
     tagged_pets = models.ManyToManyField(
         Pet,
         blank=True,
+    )
+
+    user = models.ForeignKey(
+        UserModel,
+        on_delete=models.RESTRICT,
     )

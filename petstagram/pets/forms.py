@@ -48,7 +48,9 @@ class PetDeleteForm(DisabledFormMixin, PetBaseForm):
         super().__init__(*args, **kwargs)
         self._disable_fields()
 
-
-
-
-
+    def save(self, commit=True):
+        if commit:
+            self.instance.delete()
+        else:
+            pass
+        return self.instance
