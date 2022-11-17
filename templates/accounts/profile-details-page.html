@@ -17,19 +17,17 @@
             <div class="personal">
                 <div class="edit">
                     <!-- User Username -->
-                    <p>d_kalaydzhiev</p>
+                    <p>{{ object.username }}</p>
+                    {% if is_owner %}
+                        <a href="{% url 'edit user' pk=object.pk %}">
+                            <img class="edit-img" src="{% static 'images/edit-pen-icon-6.jpg' %}" alt="edit button">
+                        </a>
 
-                    <!-- IF the viewer is the owner of the profile -->
-                    <!-- Link to Edit Profile Page -->
-                    <a href="#">
-                        <img class="edit-img" src="{% static 'images/edit-pen-icon-6.jpg' %}" alt="edit button">
-                    </a>
-
-                    <!-- Link to Delete Profile Page -->
-                    <a href="">
-                        <img class="bin-img" src="{% static 'images/icon-remove-22.jpg' %}" alt="bin button">
-                    </a>
-                    <!-- End IF the viewer is the owner of the profile -->
+                        <!-- Link to Delete Profile Page -->
+                        <a href="{% url 'delete user' pk=object.pk %}">
+                            <img class="bin-img" src="{% static 'images/icon-remove-22.jpg' %}" alt="bin button">
+                        </a>
+                    {% endif %}
 
                 </div>
                 <div class="data">
@@ -46,14 +44,15 @@
                     <span>436</span>
                     <p>likes</p>
                 </div>
-                <!-- User First and Last Name IF Added -->
-                <h3 class="names">Diyan Kalaydziev</h3>
+                {% if object.get_full_name %}
+                    <h3 class="names">{{ object.get_full_name }}</h3>
+                {% endif %}
 
-                <!-- User Email Address -->
-                <p class="email">d.denov@gmail.com</p>
+                <p class="email">{{ object.email }}</p>
 
-                <!-- User Gender IF Added -->
-                <p class="gender">Male</p>
+                {% if object.gender %}
+                    <p class="gender">{{ object.gender }}</p>
+                {% endif %}
             </div>
         </div>
         <!-- End Profile Personal Data Section -->
