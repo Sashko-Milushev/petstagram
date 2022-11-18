@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from petstagram.core.photo_utils import apply_likes_count, apply_user_liked_photo
@@ -6,6 +7,7 @@ from petstagram.pets.models import Pet
 from petstagram.pets.utils import get_pet_by_name_and_username
 
 
+@login_required
 def add_pet(request):
     if request.method == "GET":
         form = PetCreateForm()

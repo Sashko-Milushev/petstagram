@@ -28,7 +28,6 @@ class PhotoComment(models.Model):
     )
 
 
-
 class PhotoLike(models.Model):
     photo = models.ForeignKey(
         Photo,
@@ -37,7 +36,7 @@ class PhotoLike(models.Model):
         null=False,
     )
 
-    # When we have users
-    # user = models.ForeignKey(
-    #     User
-    # )
+    user = models.ForeignKey(
+        UserModel,
+        on_delete=models.RESTRICT,
+    )
