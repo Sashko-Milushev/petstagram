@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
+from petstagram.core.decorator import owner_required, is_owner
 from petstagram.core.photo_utils import apply_likes_count, apply_user_liked_photo
 from petstagram.pets.forms import PetCreateForm, PetEditForm, PetDeleteForm
 from petstagram.pets.models import Pet
@@ -43,9 +44,12 @@ def details_pet(request, username, pet_slug):
     )
 
 
+@owner_required
 def edit_pet(request, username, pet_slug):
-
     pet = get_pet_by_name_and_username(pet_slug, username)
+
+    if not is_owner(request, pet):
+        return redirect('details pet', username=username, pet_slug=pet_slug)
 
     if request.method == "GET":
         form = PetEditForm(instance=pet)
@@ -64,7 +68,6 @@ def edit_pet(request, username, pet_slug):
 
 
 def delete_pet(request, username, pet_slug):
-
     pet = get_pet_by_name_and_username(pet_slug, username)
 
     if request.method == "GET":

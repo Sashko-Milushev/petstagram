@@ -33,15 +33,15 @@
                 <div class="data">
 
                     <!-- Total Number of Photos by the User -->
-                    <span>4</span>
+                    <span>{{ photos_count }}</span>
                     <p>photos</p>
 
                     <!-- Total Number of Pets owned by the User -->
-                    <span>7</span>
+                    <span>{{ pets_count }}</span>
                     <p>pets</p>
 
                     <!-- Total Number of Likes for the User -->
-                    <span>436</span>
+                    <span>{{ likes_count }}</span>
                     <p>likes</p>
                 </div>
                 {% if object.get_full_name %}
