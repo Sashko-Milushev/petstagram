@@ -4,6 +4,7 @@ from django.core.mail import send_mail
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 UserModel = get_user_model()
 
@@ -19,7 +20,8 @@ def send_email_on_successful_sign_up(instance, created, **kwargs):
 
     send_mail(
         subject='Welcome to Petstagram',
-        message=email_content,
+        message=strip_tags(email_content),
+        html_message=email_content,
         from_email=settings.DEFAULT_FROM_EMAIL,
         recipient_list=(instance.email,),
     )
