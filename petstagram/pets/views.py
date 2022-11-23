@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-from petstagram.core.decorator import owner_required, is_owner
+from petstagram.core.decorator import owner_required
+from petstagram.core.photo_utils import  is_owner
 from petstagram.core.photo_utils import apply_likes_count, apply_user_liked_photo
 from petstagram.pets.forms import PetCreateForm, PetEditForm, PetDeleteForm
 from petstagram.pets.models import Pet
